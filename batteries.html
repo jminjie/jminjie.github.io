@@ -1,116 +1,113 @@
 <html>
 <title>Phone Batteries</title>
 <body>
-<pre>
-A comment thread between a stranger (M) and I (J) about phone batteries:
-
-M:
-This is the smartphone battery industry's version of changing 1GB from 1073741824 bytes to 1000000000 bytes to screw you over. Measuring your battery's capacity in amp-hours instead of watt-hours is like measuring your car's gas tank in height instead of volume.
-
-J:
-Looks like phones pretty much across the board use 3.7-3.8 V batteries, and I'm also not sure why using a different voltage (peak or mean) should affect the published Ah value unless they are measuring Wh and converting for some reason.
-
-M:
-> Looks like phones pretty much across the board use 3.7-3.8 V batteries, and I'm also not sure why using a different voltage (peak or mean) should affect the published Ah value
-Most phones use 3.7v batteries, but that "3.7v" comes from their 50% discharge point. Their max, fully charged value is usually around 4.2v, although some of the newer ones are about 4.35v. About half the time, if you take the back off your phone and look at your battery, it will call it a "4.2v lithium ion battery" on the label, and the other half the time, it will be called a "3.7v lithium ion battery".
-If they're telling you the battery has 2100mAh at 4.2v, that's great! That's 8.8Wh! But if they're taking the average voltage measurement of 3.7v, then its only 7.7Wh, which is a big chunk smaller.
-Which is why it makes absolutely no sense to measure battery capacity in amp-hours, and the only reason anyone would ever do that is to deceive you. Haven't you noticed how every single electric car manufacturer measures their car's battery capacity in kWh, not Ah?
-
-J:
-Right, I think I understand what you're saying.
-What I'm saying is that the Ah value is actually totally independent of the voltage. If we use both together to try and calculate Wh, using peak voltage gives us a liberal estimate of the power output over time, and using average voltage gives us an average estimate. So really, the mAh measurement, though confusing, isn't misleading.
-
-M:
-> What I'm saying is that the Ah value is actually totally independent of the voltage.
-Right, which is why it's useless as a measurement of battery capacity.
-
-J:
-Okay let me rephrase; the measurement that tells us the most is Wh or kWh and the measurement being taken is Ah or mAh.
-So let's say the battery manufacturer hooks up an ammeter to their latest battery and finds that the battery has an amperage over time of 3000 mAh. They publish this value as the charge capacity of the phone.
-What you're saying is that this tells a confusing story about the important measurement, Wh. I agree with this, and the reason it's confusing is because the customer has to go and find the voltage of the battery and compute for herself the power over time by multiplying amperage and voltage.
-The bit about phone companies using this to trick the customer by switching between Vp and Vm is where I get off-board. In fact, it seems like if they wanted to trick customers, they would actually publish the Wh value, since that's the one that'll change if they use Vp instead of Vm.
-Does that make sense?
-
-M:
-> In fact, it seems like if they wanted to trick customers, they would actually publish the Wh value, since that's the one that'll change if they use Vp instead of Vm.
-If your battery's power capacity in watt-hours is changing between measurements, you're doing something wrong, because that's not how it works. It either has 10Wh of capacity, or it doesn't, it's not going to change because of the voltage.
-
-J:
-Well watt-hours are amp-hours times voltage. I agree that a battery has some fixed true power capacity, but you can see how the measurement would change if you used a different voltage value.
-
-M:
-> Well watt-hours are amp-hours times voltage.
-Right, except that amp-hours changes depending on the voltage, so it ends up being exactly the same watt-hours regardless of what the voltage is. It's not as simple as W=V*A when you're talking about watt-hours.
-> but you can see how the measurement would change if you used a different voltage value.
-It shouldn't!
-http://www.goalzero.com/solarlife/2013/05/28/clearing-up-the-question-of-battery-capacity-in-electronics/
-
-J:
-I'm really not understanding your claim that the published mAh of the battery is used to mislead the customer.
-It seems like, based on that great article you sent me, if you read that your phone battery is 4.2 V and calculate that it has more Wh of power than one that you read is 3.7 V, publishing your calculated Wh is what would be misleading, since you don't know which voltage value was used.
-It also seems like the article explicitly mentions that W/t = V*A/t in the section titled "How Goal Zero measures battery capacity" so I'm not sure what you're suggesting when you say it's not as simple.
-
-M:
-> I'm really not understanding your claim that the published mAh of the battery is used to mislead the customer.
-Maybe I should just let someone else speak for me then?
-> The problem with this method is that it doesn’t give a complete picture of the total energy stored. It is easy to find cases where two different batteries with the same number of amp-hours will have completely different amounts of total energy.
-.
-> It seems like, based on that great article you sent me, if you read that your phone battery is 4.2 V and calculate that it has more Wh of power than one that you read is 3.7 V, publishing your calculated Wh is what would be misleading, since you don't know which voltage value was used.
-Oh if you're estimating or calculating your Wh capacity by multiplying voltage times amp-hours then yes, that would be incredibly misleading. Thankfully, it's a measured value, not a calculated one.
-> It also seems like the article explicitly mentions that W/t = V*A/t in the section titled "How Goal Zero measures battery capacity" so I'm not sure what you're suggesting when you say it's not as simple.
-Because like I just said, the amp-hours is completely dependent on voltage. That section of the article was talking about estimating the total Wh in a battery that doesn't supply that information. But if you have a 2100 mAh battery at 3.7v, it's not going to be 2100mAh at 4.2v, it's going to be 1850mAh, which is why that measurement makes no sense to use, which is what I've been trying to tell you this whole time, which is what that entire article is about.
-
-J:
-I absolutely agree that two different batteries might have different power output over time while having the same current output over time. Whether or not a company can use different voltages to fudge the mAh value seems like a different story though.
-Perhaps if there were an instrument that measured power over time, and companies took this measure and converted Wh into Ah using some unspecified voltage, we would be in trouble. Luckily what actually happens is current and voltage are measured and power is in fact computed.
-
-M:
-> Perhaps if there were an instrument that measured power over time, and companies took this measure and converted Wh into Ah using some unspecified voltage, we would be in trouble.
-That's exactly how it's done.
-
-J:
-And what instrument is it that measures power directly, not by multiplying current and voltage?
-Edit: Perhaps the wattmeter?
-Double Edit: Nope the wattmeter measures current through one coil and voltage through two and calculates the power. Maybe the Electrodynamometer?
-Edit 3: Looks like the Electrodynamometer is an ammeter that measures torque in a coil. Maybe that would work but it still seems to be explicitly a calculated value using the relationship between current and a coil's tendency for displacement.
-Edit 4: The Electronic wattmeter samples the voltage and current discretely and calculates power.
-Maybe what you're saying is that they use an instrument like this, and then purposely convert for some reason? I wonder if that's true.
-This SX post is somewhat illuminating http://electronics.stackexchange.com/questions/79279/does-mah-measure-how-long-a-battery-would-last but I see no mention of such practices among the industry. But of course, they would want to hide it from us, lest we discover the terrifying secret behind their greed! (Or perhaps they just use an ammeter and publish the measured mAh.)
-Then again, the only reason I'm inclined to believe my theory is that it has the benefit of not sounding insane and antagonizing phone manufactures for no good reason except the science of P=IV. And also being simpler. I guess what I'm saying is both ideas have merit, and boy does my butt hurt over this issue.
-
-M:
-> Edit: Perhaps the wattmeter? Double Edit: Nope the wattmeter measures current through one coil and voltage through two and calculates the power.
-Nope? What do you mean nope? That's exactly how a wattmeter works. Measuring both, and not just one, is why you get a much better representation of battery capacity with a wattmeter than you do with an ammeter.
-> Then again, the only reason I'm inclined to believe my theory is that it has the benefit of not sounding insane and antagonizing phone manufactures for no good reason
-What is your theory, exactly, other than mAh is totally the same as Wh even though it's completely different?
-> except the science of P=IV.
-The formula of W=VA is why using current to measure capacity is deceptive, I'm not sure how you managed to take that same formula and make it sound like mAh is giving you the whole story, maybe you don't fully understand it?
-> and boy does my butt hurt over this issue.
-No kidding.
-> antagonizing phone manufactures lest we discover the terrifying secret behind their greed!
-Okay, sure buddy, phone manufacturers would never deceive us. That's why your 16GB phone only holds 12GB, that's why 1GB = 1000000000 bytes and not 1073741824 bytes, that's why your phone's battery supports "up to 48 hours without a single charge! (if you never use it!)". Because they'd never deceive you, oh no, I'm just a paranoid tinfoil hat man.
-
-J:
-My theory is that the published mAh values are based on measurements of current
-Edit: you idiot!
-Edit 2: WHAT THE FUCK HAVE YOU BEEN ARGUING ABOUT IF YOU HAVEN'T EVEN UNDERSTOOD MY THEORY? YOUR RESPONSES ARE SUPPOSED TO BE BASED ON MY RESPONSES. DO YOU THINK ARGUING IS JUST SAYING THE SAME THING OVER AND OVER AGAIN????
-
-M:
-Right, which is a bit like measuring your car's gas tank in height, when we should be measuring it in volume.
-
-J:
-Like I said, I absolutely agree that P*t is the more useful information. How you managed to convince yourself that the industry measures power and then divides by voltage to trick customers is less clear.
-
-M:
-> How you managed to convince yourself that the industry measures power and then divides by voltage to trick customers is less clear.
-Do you have a better explanation for leaving out half of the equation, given the tech industry's habit of deceptive practises with units of measurement?
-
-J:
-More or less the explanation outlined here, in Olin's answer: http://electronics.stackexchange.com/questions/24727/why-are-batteries-measured-in-ampere-hours-but-electricity-usage-measured-in-kil
-Edit: Actually all the answers are pretty good.
-Edit 2: You idiot!!
-
-End of thread.
-</pre>
+<p>A comment thread between a stranger (M) and I (J) about phone batteries:</p>
+<p><b>M:</b>
+<br>This is the smartphone battery industry's version of changing 1GB from 1073741824 bytes to 1000000000 bytes to screw you over. Measuring your battery's capacity in amp-hours instead of watt-hours is like measuring your car's gas tank in height instead of volume.
+</p>
+<p><b>J:</b>
+<br>Looks like phones pretty much across the board use 3.7-3.8 V batteries, and I'm also not sure why using a different voltage (peak or mean) should affect the published Ah value unless they are measuring Wh and converting for some reason.
+</p>
+<p><b>M:</b>
+<br>> Looks like phones pretty much across the board use 3.7-3.8 V batteries, and I'm also not sure why using a different voltage (peak or mean) should affect the published Ah value
+<br>Most phones use 3.7v batteries, but that "3.7v" comes from their 50% discharge point. Their max, fully charged value is usually around 4.2v, although some of the newer ones are about 4.35v. About half the time, if you take the back off your phone and look at your battery, it will call it a "4.2v lithium ion battery" on the label, and the other half the time, it will be called a "3.7v lithium ion battery".
+<br>If they're telling you the battery has 2100mAh at 4.2v, that's great! That's 8.8Wh! But if they're taking the average voltage measurement of 3.7v, then its only 7.7Wh, which is a big chunk smaller.
+<br>Which is why it makes absolutely no sense to measure battery capacity in amp-hours, and the only reason anyone would ever do that is to deceive you. Haven't you noticed how every single electric car manufacturer measures their car's battery capacity in kWh, not Ah?
+</p>
+<p><b>J:</b>
+<br>Right, I think I understand what you're saying.
+<br>What I'm saying is that the Ah value is actually totally independent of the voltage. If we use both together to try and calculate Wh, using peak voltage gives us a liberal estimate of the power output over time, and using average voltage gives us an average estimate. So really, the mAh measurement, though confusing, isn't misleading.
+</p>
+<p><b>M:</b>
+<br>> What I'm saying is that the Ah value is actually totally independent of the voltage.
+<br>Right, which is why it's useless as a measurement of battery capacity.
+</p>
+<p><b>J:</b>
+<br>Okay let me rephrase; the measurement that tells us the most is Wh or kWh and the measurement being taken is Ah or mAh.
+<br>So let's say the battery manufacturer hooks up an ammeter to their latest battery and finds that the battery has an amperage over time of 3000 mAh. They publish this value as the charge capacity of the phone.
+<br>What you're saying is that this tells a confusing story about the important measurement, Wh. I agree with this, and the reason it's confusing is because the customer has to go and find the voltage of the battery and compute for herself the power over time by multiplying amperage and voltage.
+<br>The bit about phone companies using this to trick the customer by switching between Vp and Vm is where I get off-board. In fact, it seems like if they wanted to trick customers, they would actually publish the Wh value, since that's the one that'll change if they use Vp instead of Vm.
+<br>Does that make sense?
+</p>
+<p><b>M:</b>
+<br>> In fact, it seems like if they wanted to trick customers, they would actually publish the Wh value, since that's the one that'll change if they use Vp instead of Vm.
+<br>If your battery's power capacity in watt-hours is changing between measurements, you're doing something wrong, because that's not how it works. It either has 10Wh of capacity, or it doesn't, it's not going to change because of the voltage.
+</p>
+<p><b>J:</b>
+<br>Well watt-hours are amp-hours times voltage. I agree that a battery has some fixed true power capacity, but you can see how the measurement would change if you used a different voltage value.
+</p>
+<p><b>M:</b>
+<br>> Well watt-hours are amp-hours times voltage.
+<br>Right, except that amp-hours changes depending on the voltage, so it ends up being exactly the same watt-hours regardless of what the voltage is. It's not as simple as W=V*A when you're talking about watt-hours.
+<br>> but you can see how the measurement would change if you used a different voltage value.
+<br>It shouldn't!
+<br>http://www.goalzero.com/solarlife/2013/05/28/clearing-up-the-question-of-battery-capacity-in-electronics/
+</p>
+<p><b>J:</b>
+<br>I'm really not understanding your claim that the published mAh of the battery is used to mislead the customer.
+<br>It seems like, based on that great article you sent me, if you read that your phone battery is 4.2 V and calculate that it has more Wh of power than one that you read is 3.7 V, publishing your calculated Wh is what would be misleading, since you don't know which voltage value was used.
+<br>It also seems like the article explicitly mentions that W/t = V*A/t in the section titled "How Goal Zero measures battery capacity" so I'm not sure what you're suggesting when you say it's not as simple.
+</p>
+<p><b>M:</b>
+<br>> I'm really not understanding your claim that the published mAh of the battery is used to mislead the customer.
+<br>Maybe I should just let someone else speak for me then?
+<br>> The problem with this method is that it doesn't give a complete picture of the total energy stored. It is easy to find cases where two different batteries with the same number of amp-hours will have completely different amounts of total energy.
+<br>.
+<br>> It seems like, based on that great article you sent me, if you read that your phone battery is 4.2 V and calculate that it has more Wh of power than one that you read is 3.7 V, publishing your calculated Wh is what would be misleading, since you don't know which voltage value was used.
+<br>Oh if you're estimating or calculating your Wh capacity by multiplying voltage times amp-hours then yes, that would be incredibly misleading. Thankfully, it's a measured value, not a calculated one.
+<br>> It also seems like the article explicitly mentions that W/t = V*A/t in the section titled "How Goal Zero measures battery capacity" so I'm not sure what you're suggesting when you say it's not as simple.
+<br>Because like I just said, the amp-hours is completely dependent on voltage. That section of the article was talking about estimating the total Wh in a battery that doesn't supply that information. But if you have a 2100 mAh battery at 3.7v, it's not going to be 2100mAh at 4.2v, it's going to be 1850mAh, which is why that measurement makes no sense to use, which is what I've been trying to tell you this whole time, which is what that entire article is about.
+</p>
+<p><b>J:</b>
+<br>I absolutely agree that two different batteries might have different power output over time while having the same current output over time. Whether or not a company can use different voltages to fudge the mAh value seems like a different story though.
+<br>Perhaps if there were an instrument that measured power over time, and companies took this measure and converted Wh into Ah using some unspecified voltage, we would be in trouble. Luckily what actually happens is current and voltage are measured and power is in fact computed.
+</p>
+<p><b>M:</b>
+<br>> Perhaps if there were an instrument that measured power over time, and companies took this measure and converted Wh into Ah using some unspecified voltage, we would be in trouble.
+<br>That's exactly how it's done.
+</p>
+<p><b>J:</b>
+<br>And what instrument is it that measures power directly, not by multiplying current and voltage?
+<br>Edit: Perhaps the wattmeter?
+<br>Double Edit: Nope the wattmeter measures current through one coil and voltage through two and calculates the power. Maybe the Electrodynamometer?
+<br>Edit 3: Looks like the Electrodynamometer is an ammeter that measures torque in a coil. Maybe that would work but it still seems to be explicitly a calculated value using the relationship between current and a coil's tendency for displacement.
+<br>Edit 4: The Electronic wattmeter samples the voltage and current discretely and calculates power.
+<br>Maybe what you're saying is that they use an instrument like this, and then purposely convert for some reason? I wonder if that's true.
+<br>This SX post is somewhat illuminating http://electronics.stackexchange.com/questions/79279/does-mah-measure-how-long-a-battery-would-last but I see no mention of such practices among the industry. But of course, they would want to hide it from us, lest we discover the terrifying secret behind their greed! (Or perhaps they just use an ammeter and publish the measured mAh.)
+<br>Then again, the only reason I'm inclined to believe my theory is that it has the benefit of not sounding insane and antagonizing phone manufactures for no good reason except the science of P=IV. And also being simpler. I guess what I'm saying is both ideas have merit, and boy does my butt hurt over this issue.
+</p>
+<p><b>M:</b>
+<br>> Edit: Perhaps the wattmeter? Double Edit: Nope the wattmeter measures current through one coil and voltage through two and calculates the power.
+<br>Nope? What do you mean nope? That's exactly how a wattmeter works. Measuring both, and not just one, is why you get a much better representation of battery capacity with a wattmeter than you do with an ammeter.
+<br>> Then again, the only reason I'm inclined to believe my theory is that it has the benefit of not sounding insane and antagonizing phone manufactures for no good reason
+<br>What is your theory, exactly, other than mAh is totally the same as Wh even though it's completely different?
+<br>> except the science of P=IV.
+<br>The formula of W=VA is why using current to measure capacity is deceptive, I'm not sure how you managed to take that same formula and make it sound like mAh is giving you the whole story, maybe you don't fully understand it?
+<br>> and boy does my butt hurt over this issue.
+<br>No kidding.
+<br>> antagonizing phone manufactures lest we discover the terrifying secret behind their greed!
+<br>Okay, sure buddy, phone manufacturers would never deceive us. That's why your 16GB phone only holds 12GB, that's why 1GB = 1000000000 bytes and not 1073741824 bytes, that's why your phone's battery supports "up to 48 hours without a single charge! (if you never use it!)". Because they'd never deceive you, oh no, I'm just a paranoid tinfoil hat man.
+</p>
+<p><b>J:</b>
+<br>My theory is that the published mAh values are based on measurements of current
+<br>Edit: you idiot!
+<br>Edit 2: WHAT THE FUCK HAVE YOU BEEN ARGUING ABOUT IF YOU HAVEN'T EVEN UNDERSTOOD MY THEORY? YOUR RESPONSES ARE SUPPOSED TO BE BASED ON MY RESPONSES. DO YOU THINK ARGUING IS JUST SAYING THE SAME THING OVER AND OVER AGAIN????
+</p>
+<p><b>M:</b>
+<br>Right, which is a bit like measuring your car's gas tank in height, when we should be measuring it in volume.
+</p>
+<p><b>J:</b>
+<br>Like I said, I absolutely agree that P*t is the more useful information. How you managed to convince yourself that the industry measures power and then divides by voltage to trick customers is less clear.
+</p>
+<p><b>M:</b>
+<br>> How you managed to convince yourself that the industry measures power and then divides by voltage to trick customers is less clear.
+<br>Do you have a better explanation for leaving out half of the equation, given the tech industry's habit of deceptive practises with units of measurement?
+</p>
+<p><b>J:</b>
+<br>More or less the explanation outlined here, in Olin's answer: http://electronics.stackexchange.com/questions/24727/why-are-batteries-measured-in-ampere-hours-but-electricity-usage-measured-in-kil
+<br>Edit: Actually all the answers are pretty good.
+<br>Edit 2: You idiot!!
+</p>
+<p>End of thread.</p>
 </body>
 </html>
