@@ -1,5 +1,8 @@
-<h1>A Guide to Setting up OpenAFS with Kerberos on Debian for The University of Michigan</h1>
-<h2>I. Introduction</h2>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheets/block-code.css">
+</head>
+<h1>Setting up OpenAFS with Kerberos on Ubuntu 14.04 for The University of Michigan</h1>
+<h2>By Jordan</h2>
 <h3>1. What is AFS</h3>
 <p>Andrew File System (AFS) is the name of a program written by Transarc Corporation which was acquired by IBM. It implements a distribued file system, meaning a file system that is distributed across many computers. IBM made a copy of the program's code available for open development and this release is called OpenAFS.</p>
 <p>U-M uses OpenAFS to store the files in your CAEN home directory. You can verify this by ssh-ing into a CAEN machine and finding the directory <code>/afs/umich.edu/user/j/m/jminjie/</code> and comparing its contents to <code>~/</code>. When OpenAFS is installed, the program abstracts away the actual distributing work being done and mounts the file system in <code>/afs</code> so that your files can be read as if they were on disk. Then the computer you ssh into at <code>login.engin.umich.edu</code> pretends that the <code>/afs</code> directory belonging to your uniqname is your home directory.</p>
@@ -8,21 +11,21 @@
 <p>With this set up you will be able to edit files as if they were on your own disk and your changes will propogate so that anyone using OpenAFS to view them will see the changes. That means the new workflow consists of just editing and then compiling on CAEN.</p>
 <h3>3. What is Kerberos</h3>
 <p>OpenAFS uses a protocol called Kerberos for authentication. We need to use Kerberos together with OpenAFS because we don't own the file system at <code>umich.edu</code>, the school does.</p>
-<h2>II. Setting up Kerberos</h2>
-First we use the Debian package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
+<h2>I. Setting up Kerberos</h2>
+First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
 <pre><code>sudo apt-get install krb5-user
-scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
-sudo mv temp.txt /etc/krb5.conf
-kinit jminjie@UMICH.EDU
-klist
+$ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
+$ sudo mv temp.txt /etc/krb5.conf
+$ kinit jminjie@UMICH.EDU
+$ klist
 </code></pre>
 If we stop and look at the contents of temp.txt, the copied configuration file, we see the description of a realm being defined as the default realm called UMICH.edu. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.
-<h2>III. Setting up AFS</h2>
+<h2>II. Setting up AFS</h2>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
-<pre><code>sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
-sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
+<pre><code>$ sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
+$ sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 <p>Running dpkg-reconfigure will open a window in which you should choose these options:</p>
-<pre>
+<pre><code>
 Default realm:	                                             UMICH.EDU
 Does DNS contain pointers to your realm's Kerberos Servers?  Yes
 AFS cell this workstation belongs to:                        umich.edu
@@ -34,15 +37,16 @@ Dynamically generate the contents of /afs                    Yes
 Use fakestat?                                                Yes
 DB server host names for your home cell:                     (blank)
 Run openafs client now and at boot?                          (user preference)
-</pre>
+</code></pre>
 Once this is finished, we once again copy the configuration file from the CAEN computers using scp. If we stop here and read the contents of temp.txt we see a large list of entries indexed by server name. At the top of the list is eecs.umich.edu, some IP addresses and afs server names. This file combined with some others in <code>/etc/openafs/</code> tell the <code>aklog</code> command how to turn an acquired Kerberos ticket into an OpenAFS token. Finally we verify that we have acquired the token by running <code>token</code>.
-<pre><code>scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
-sudo mv temp.txt /etc/openafs/CellServDB
-aklog
-tokens</code></pre>
+<pre><code>$ scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
+$ sudo mv temp.txt /etc/openafs/CellServDB
+$ aklog
+$ tokens</code></pre>
 <p>If you specified during reconfiguration that you want to run the openafs client then it should be running right now. You can see your files at <code>/afs/umich.edu/user/j/m/jminjie</code>. Otherwise you can run the client manually with <code>/etc/init.d/openafs-client force-start</code>.
-<h2> IV. Conclusion</h2>
-<p>I wrote myself a bash script that gets a Kerberos ticket and then an OpenAFS token, then moves me to my mounted home directory. Using <code>chmod</code> to make it executable.</p>
+<h2>III. Conclusion</h2>
+<h3>1. Initialization script</h3>
+<p>I wrote myself a bash script that gets a Kerberos ticket and then an OpenAFS token, then moves me to my mounted home directory. I used <code>chmod</code> to make it executable:</p>
 <pre><code>$ chmod +x init_afs
 $ cat init_afs
 #!/bin/sh
@@ -52,7 +56,11 @@ aklog
 tokens
 cd  /afs/umich.edu/user/j/m/jminjie</code></pre>
 <p>I could run it using <code>./init_afs</code> but since this would open up a temporary shell and execute it, and I want the script to change my directory, I invoke it with <code>source init_afs</code> instead.</p>
-<h2>V. Resources</h2>
+<h3>2. Resources</h3>
 <p>These are the resources I used:</p>
-<p>To set up the U-M Kerberos client with ssh on a Mac: (This was a good starting point for figuring out how to do it on Ubuntu) <a ref=http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/>SSH Kerberos Umich</a></p>
-<p>To set up OpenAFS on Ubuntu: <a href=http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux>Open AFS On Ubuntu Linux</a></p>
+<p>
+To set up the U-M Kerberos client with ssh on a Mac: (This was a good starting point for figuring out how to do it on Ubuntu) <a href=http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/>SSH Kerberos Umich</a><br>
+To set up OpenAFS on Ubuntu: <a href=http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux>Open AFS On Ubuntu Linux</a><br>
+For information about OpenAFS: <a href=https://www.openafs.org/>Home of OpenAFS</a><br>
+For information about Kerberos: <a href=http://web.mit.edu/kerberos/>Kerberos: The Network Authentication Protocol</a>
+</p>
