@@ -19,7 +19,7 @@ $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
 $ klist
 </code></pre>
-If we stop and look at the contents of <code>temp.txt<code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.
+If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.
 <h2>II. Setting up AFS</h2>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
 <pre><code>$ sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
