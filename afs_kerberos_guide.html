@@ -7,18 +7,18 @@
 <p>For most of my U-M EECS undergraduate career my workflow consisted of editing files on my computer using my preferred text editors, transferring the files to my CAEN home directory using WinSCP or git, and compiling on CAEN.</p>
 <p>With this set up you will be able to edit files as if they were on your own disk and your changes will propogate so that anyone using OpenAFS to view them will see the changes. That means the new workflow consists of just editing and then compiling on CAEN.</p>
 <h3>3. What is Kerberos</h3>
-<p>OpenAFS uses Kerberos for authentication. Just like when you log in to Wolverine Access, CTools or Canvas, the authentication ticket you receive is good for a whole bunch of different U-M services. We need to use Kerberos together with OpenAFS because we don't own the filesystem at <code>umich.edu</code>, the school does.</p>
+<p>OpenAFS uses a protocol called Kerberos for authentication. We need to use Kerberos together with OpenAFS because we don't own the filesystem at <code>umich.edu</code>, the school does.</p>
 <h2>II. Setting up Kerberos</h2>
-First we use the Debian package manager <code>apt-get</code> to install krb5-user, the user client for Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
+First we use the Debian package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
 <pre><code>sudo apt-get install krb5-user
 scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 sudo mv temp.txt /etc/krb5.conf
 kinit jminjie@UMICH.EDU
 klist
 </code></pre>
-If we stop and look at the contents of temp.txt, the copied configuration file, we see the description of a realm being defined as the default realm called UMICH.edu. Specific servers and ports are listed which tell Kerberos exactly how to get authentication when we run <code>kinit</code>.
+If we stop and look at the contents of temp.txt, the copied configuration file, we see the description of a realm being defined as the default realm called UMICH.edu. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.
 <h2>III. Setting up AFS</h2>
-First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings for OpenAFS with Kerberos.
+First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
 <pre><code>sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
 sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 <p>Running dpkg-reconfigure will open a window in which you should choose these options:</p>
