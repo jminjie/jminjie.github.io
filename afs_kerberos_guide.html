@@ -16,14 +16,13 @@
 <br>
 <h2>I. Setting up Kerberos</h2>
 <p>
-First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
+First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:</p>
 <pre><code>$ sudo apt-get install krb5-user
 $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
-$ klist
-</code></pre>
-If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.</p>
+$ klist</code></pre>
+<p>If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.</p>
 <br>
 <h2>II. Setting up AFS</h2>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
@@ -60,15 +59,17 @@ kinit jminjie@UMICH.EDU
 klist
 aklog
 tokens
-cd  /afs/umich.edu/user/j/m/jminjie</code></pre>
+cd /afs/umich.edu/user/j/m/jminjie</code></pre>
 <p>I could run it using <code>./init_afs</code> but since this would open up a temporary shell and execute it, and I want the script to change my directory, I invoke it with <code>source init_afs</code> instead.</p>
 <h3>2. Resources</h3>
 <p>These are the resources I used:</p>
 <p>
-To set up the U-M Kerberos client with ssh on a Mac: (This was a good starting point for figuring out how to do it on Ubuntu) <a href=http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/>SSH Kerberos Umich</a><br>
-To set up OpenAFS on Ubuntu: <a href=http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux>Open AFS On Ubuntu Linux</a><br>
-For information about OpenAFS: <a href=https://www.openafs.org/>Home of OpenAFS</a><br>
-For information about Kerberos: <a href=http://web.mit.edu/kerberos/>Kerberos: The Network Authentication Protocol</a>
+<ul>
+	<li>To set up the U-M Kerberos client with ssh on a Mac: (A good starting point for doing it on Ubuntu) <a href=http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/>SSH Kerberos Umich</a></li>
+	<li>To set up OpenAFS on Ubuntu: <a href=http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux>Open AFS On Ubuntu Linux</a></li>
+	<li>For information about OpenAFS: <a href=https://www.openafs.org/>Home of OpenAFS</a></li>
+	<li>For information about Kerberos: <a href=http://web.mit.edu/kerberos/>Kerberos: The Network Authentication Protocol</a></li>
+</ul>
 </p>
 </div>
 </body>
