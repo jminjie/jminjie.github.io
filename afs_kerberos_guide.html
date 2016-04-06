@@ -39,26 +39,20 @@ Once this is finished, we once again copy the configuration file from the CAEN c
 <pre><code>scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
 sudo mv temp.txt /etc/openafs/CellServDB
 aklog
-tokens
-</code></pre>
-<h2> IV. Putting it all together</h2>
-<body>
-I explain how to put it all together
-<pre><code>
-$ chmod +x init_afs
+tokens</code></pre>
+<p>If you specified during reconfiguration that you want to run the openafs client then it should be running right now. You can see your files at <code>/afs/umich.edu/user/j/m/jminjie</code>. Otherwise you can run the client manually with <code>/etc/init.d/openafs-client force-start</code>.
+<h2> IV. Conclusion</h2>
+<p>I wrote myself a bash script that gets a Kerberos ticket and then an OpenAFS token, then moves me to my mounted home directory. Using <code>chmod</code> to make it executable.</p>
+<pre><code>$ chmod +x init_afs
 $ cat init_afs
 #!/bin/sh
 kinit jminjie@UMICH.EDU
 klist
 aklog
 tokens
-cd  /afs/umich.edu/user/j/m/jminjie
-</code></pre>
-I made a shell script called init_afs. You could run it using <code>./init_afs</code> but since this would open up a temporary shell and execute it, and I want the script to change my directory, I invoke it with <code>source init_afs</code> instead.
-</body>
+cd  /afs/umich.edu/user/j/m/jminjie</code></pre>
+<p>I could run it using <code>./init_afs</code> but since this would open up a temporary shell and execute it, and I want the script to change my directory, I invoke it with <code>source init_afs</code> instead.</p>
 <h2>V. Resources</h2>
-<body>
-These are the resources I used:<br>
-http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/<br>
-http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux<br>
-</body>
+<p>These are the resources I used:</p>
+<p>To set up the U-M Kerberos client with ssh on a Mac: (This was a good starting point for figuring out how to do it on Ubuntu) <a ref=http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/>SSH Kerberos Umich</a></p>
+<p>To set up OpenAFS on Ubuntu: <a href=http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux>Open AFS On Ubuntu Linux</a></p>
