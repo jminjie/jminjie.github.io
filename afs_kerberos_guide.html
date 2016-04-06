@@ -8,7 +8,7 @@ This will be the introduction eventually. I should explain what Kerberos does an
 I explain how to set up the Kerberos part.
 <pre><code>
 sudo apt-get install krb5-user
-scp jminjie@login-course.engin.umich.edu:/etc/krb5.conf temp.txt
+scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 sudo mv temp.txt /etc/krb5.conf
 kinit jminjie@UMICH.EDU
 klist
@@ -35,7 +35,7 @@ DB server host names for your home cell:	(blank)
 Run openafs client now and at boot?	(user preference)
 <pre><code>
 sudo service openafs-client restart
-scp jminjie@course.engin.umich.edu:/etc/openafs/CellServDB temp.txt
+scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
 sudo mv temp.txt /etc/openafs/CellServDB
 aklog
 tokens
