@@ -9,7 +9,7 @@
 	border: 1px solid green;
 	margin: 5px;
 	padding: 5px;
-	background: darkblue;
+	background: #fdf6e3;
     }       
     
     code {
@@ -20,7 +20,7 @@
         white-space: pre-wrap;
         white-space: -moz-pre-wrap;
         white-space: -o-pre-wrap;
-	color: white;
+	color: #586e75;
     }
     
     #content code {
