@@ -6,21 +6,21 @@ This will be the introduction eventually. I should explain what Kerberos does an
 <h2>Setting up Kerberos</h2>
 <body>
 I explain how to set up the Kerberos part.
-<code>
+<pre><code>
 sudo apt-get install krb5-user
 scp jminjie@login-course.engin.umich.edu:/etc/krb5.conf temp.txt
 sudo mv temp.txt /etc/krb5.conf
 kinit jminjie@UMICH.EDU
 klist
-</code>
+</code></pre>
 </body>
 <h2>Setting up AFS</h2>
 <body>
 I explain how to set up the AFS part.
-<code>
+<pre><code>
 sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
 sudo dpkg-reconfigure krb5-config openafs-client
-</code>
+</code></pre>
 Running dpkg-reconfigure will open a window in which you should choose these options:
 Default realm:	UMICH.EDU
 Does DNS contain pointers to your realm's Kerberos Servers?	Yes
@@ -33,18 +33,18 @@ Dynamically generate the contents of /afs	Yes
 Use fakestat?	Yes
 DB server host names for your home cell:	(blank)
 Run openafs client now and at boot?	(user preference)
-</code>
+<pre><code>
 sudo service openafs-client restart
 scp jminjie@course.engin.umich.edu:/etc/openafs/CellServDB temp.txt
 sudo mv temp.txt /etc/openafs/CellServDB
 aklog
 tokens
-</code>
+</code></pre>
 </body>
 <h2>Putting it all together</h2>
 <body>
 I explain how to put it all together
-<code>
+<pre><code>
 $ chmod +x init_afs
 $ cat init_afs
 #!/bin/sh
@@ -53,10 +53,10 @@ klist
 aklog
 tokens
 cd  /afs/umich.edu/user/j/m/jminjie
-</code>
-<code>
+</code></pre>
+<pre><code>
 $ source init_afs	
-</code>
+</code></pre>
 </body>
 <h2>Resources</h2>
 These are the resources I used:
