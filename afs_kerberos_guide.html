@@ -1,8 +1,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="stylesheets/block-code.css">
 </head>
-<body>
-<div style="width: 100%; max-width: 700px; margin: 40px auto; font-size: 16px; line-height: 1.4;">
+<body style="font-family: 'Georgia', serif;">
+<div style="width: 100%; max-width: 700px; margin: 40px auto; font-size: 16px; line-height: 1.7;">
 <h1>Setting up OpenAFS with Kerberos on Ubuntu 14.04 for The University of Michigan</h1>
 <h2>By Jordan</h2>
 <h3>1. What is AFS</h3>
@@ -13,7 +13,9 @@
 <p>With this set up you will be able to edit files as if they were on your own disk and your changes will propogate so that anyone using OpenAFS to view them will see the changes. That means the new workflow consists of just editing and then compiling on CAEN.</p>
 <h3>3. What is Kerberos</h3>
 <p>OpenAFS uses a protocol called Kerberos for authentication. We need to use Kerberos together with OpenAFS because we don't own the file system at <code>umich.edu</code>, the school does.</p>
+<br>
 <h2>I. Setting up Kerberos</h2>
+<p>
 First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
 <pre><code>$ sudo apt-get install krb5-user
 $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
@@ -21,7 +23,8 @@ $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
 $ klist
 </code></pre>
-If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.
+If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.edu</code>. Specific servers and ports are listed which tell <code>kinit</code> exactly how to get authentication.</p>
+<br>
 <h2>II. Setting up AFS</h2>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
 <pre><code>$ sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
@@ -45,7 +48,8 @@ $ sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 $ sudo mv temp.txt /etc/openafs/CellServDB
 $ aklog
 $ tokens</code></pre>
-<p>If you specified during reconfiguration that you want to run the openafs client then it should be running right now. You can see your files at <code>/afs/umich.edu/user/j/m/jminjie</code>. Otherwise you can run the client manually with <code>/etc/init.d/openafs-client force-start</code>.
+<p>If you specified during reconfiguration that you want to run the openafs client then it should be running right now. You can see your files at <code>/afs/umich.edu/user/j/m/jminjie</code>. Otherwise you can run the client manually with <code>/etc/init.d/openafs-client force-start</code>.</p>
+<br>
 <h2>III. Conclusion</h2>
 <h3>1. Initialization script</h3>
 <p>I wrote myself a shell script that gets a Kerberos ticket and then an OpenAFS token, then moves me to my mounted home directory. I used <code>chmod</code> to make it executable:</p>
