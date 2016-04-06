@@ -21,7 +21,18 @@ I explain how to set up the AFS part.
 sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
 sudo dpkg-reconfigure krb5-config openafs-client
 </code>
-Explain the options in reconfigure
+Running dpkg-reconfigure will open a window in which you should choose these options:
+Default realm:	UMICH.EDU
+Does DNS contain pointers to your realm's Kerberos Servers?	Yes
+AFS cell this workstation belongs to:	umich.edu
+Size of AFS cache:	512000 (this means 0.5GB, can be higher if you have the space)
+Run openafs client now and at boot?	(user preference)
+Look up AFS cells in DNS?	Yes
+Encrypt authenticated traffic with AFS fileserver?	Yes
+Dynamically generate the contents of /afs	Yes
+Use fakestat?	Yes
+DB server host names for your home cell:	(blank)
+Run openafs client now and at boot?	(user preference)
 </code>
 sudo service openafs-client restart
 scp jminjie@course.engin.umich.edu:/etc/openafs/CellServDB temp.txt
@@ -47,3 +58,7 @@ cd  /afs/umich.edu/user/j/m/jminjie
 $ source init_afs	
 </code>
 </body>
+<h2>Resources</h2>
+These are the resources I used:
+http://csw.github.io/bioruby-maf/blog/2012/09/26/ssh_kerberos_umich/
+http://tig.csail.mit.edu/wiki/TIG/OpenAFSOnUbuntuLinux
