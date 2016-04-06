@@ -1,29 +1,36 @@
-    pre {
-        font-family: "Courier 10 Pitch", Courier, monospace;
-        font-size: 95%;
-        line-height: 140%;
-        white-space: pre;
-        white-space: pre-wrap;
-        white-space: -moz-pre-wrap;
-        white-space: -o-pre-wrap;
+pre {
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 95%;
+	line-height: 140%;
+	white-space: pre;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
 	margin: 5px;
 	padding: 5px;
 	background: #fdf6e3;
-    }       
-    
-    code {
-        font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-        font-size: 95%;
-        line-height: 140%;
-        white-space: pre;
-        white-space: pre-wrap;
-        white-space: -moz-pre-wrap;
-        white-space: -o-pre-wrap;
+}       
+
+code {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 95%;
+	line-height: 140%;
+	white-space: pre;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
 	color: #586e75;
-    }
-    
-    #content code {
-        display: block;
-        padding: 0.5em 1em;
-        border: 1px solid #bebab0;
-    }
+}
+
+#content code {
+	display: block;
+	padding: 0.5em 1em;
+	border: 1px solid #bebab0;
+}
+
+table, td {
+	display: table;
+	border-collapse: collapse;
+	text-align: left;
+	border-color: gray;
+}
