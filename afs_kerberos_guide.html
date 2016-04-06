@@ -4,7 +4,7 @@
 <body style="font-family: 'Georgia', serif;">
 <div style="width: 100%; max-width: 700px; margin: 40px auto; font-size: 16px; line-height: 1.7;">
 <h1>Setting up OpenAFS with Kerberos on Ubuntu 14.04 at The University of Michigan</h1>
-<h2>By Jordan</h2>
+<h2>By Jordan 2016-04-05</h2>
 <h3>1. What is AFS</h3>
 <p>Andrew File System (AFS) is the name of a program written by Transarc Corporation which was acquired by IBM. It implements a distribued file system, meaning a file system that is distributed across many computers. IBM made a copy of the program's code available for open development and this release is called OpenAFS.</p>
 <p>U-M uses OpenAFS to store the files in your CAEN home directory. You can verify this by ssh-ing into a CAEN machine and finding the directory <code>/afs/umich.edu/user/j/m/jminjie/</code> and comparing its contents to <code>~/</code>. When OpenAFS is installed, the program abstracts away the actual distributing work being done and mounts the file system in <code>/afs</code> so that your files can be read as if they were on disk. Then the computer you ssh into at <code>login.engin.umich.edu</code> pretends that the <code>/afs</code> directory belonging to your uniqname is your home directory.</p>
