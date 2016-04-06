@@ -13,7 +13,7 @@
 <p>OpenAFS uses a protocol called Kerberos for authentication. We need to use Kerberos together with OpenAFS because we don't own the file system at <code>umich.edu</code>, the school does.</p>
 <h2>I. Setting up Kerberos</h2>
 First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
-<pre><code>sudo apt-get install krb5-user
+<pre><code>$sudo apt-get install krb5-user
 $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
@@ -25,8 +25,7 @@ First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Ke
 <pre><code>$ sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
 $ sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 <p>Running dpkg-reconfigure will open a window in which you should choose these options:</p>
-<pre><code>
-Default realm:	                                             UMICH.EDU
+<pre><code>Default realm:	                                             UMICH.EDU
 Does DNS contain pointers to your realm's Kerberos Servers?  Yes
 AFS cell this workstation belongs to:                        umich.edu
 Size of AFS cache:                                           512000 (this means 0.5GB, and can be higher if you have the space. All students at U-M get 10GB max.)
