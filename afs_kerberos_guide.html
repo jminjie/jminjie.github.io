@@ -18,13 +18,10 @@ klist
 </code></pre>
 If we stop and look at the contents of temp.txt, the copied configuration file, we see the description of a realm being defined as the default realm called UMICH.edu. Specific servers and ports are listed which tell Kerberos exactly how to get authentication when we run <code>kinit</code>.
 <h2>III. Setting up AFS</h2>
-<body>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings for OpenAFS with Kerberos.
-<pre><code>
-sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
-sudo dpkg-reconfigure krb5-config openafs-client
-</code></pre>
-Running dpkg-reconfigure will open a window in which you should choose these options:
+<pre><code>sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
+sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
+<p>Running dpkg-reconfigure will open a window in which you should choose these options:</p>
 <pre>
 Default realm:	                                             UMICH.EDU
 Does DNS contain pointers to your realm's Kerberos Servers?  Yes
@@ -39,13 +36,11 @@ DB server host names for your home cell:                     (blank)
 Run openafs client now and at boot?                          (user preference)
 </pre>
 Once this is finished, we once again copy the configuration file from the CAEN computers using scp. If we stop here and read the contents of temp.txt we see a large list of entries indexed by server name. At the top of the list is eecs.umich.edu, some IP addresses and afs server names. This file combined with some others in <code>/etc/openafs/</code> tell the <code>aklog</code> command how to turn an acquired Kerberos ticket into an OpenAFS token. Finally we verify that we have acquired the token by running <code>token</code>.
-<pre><code>
-scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
+<pre><code>scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
 sudo mv temp.txt /etc/openafs/CellServDB
 aklog
 tokens
 </code></pre>
-</body>
 <h2> IV. Putting it all together</h2>
 <body>
 I explain how to put it all together
