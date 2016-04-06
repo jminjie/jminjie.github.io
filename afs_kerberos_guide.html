@@ -10,7 +10,7 @@
 <p>OpenAFS uses Kerberos for authentication. Just like when you log in to Wolverine Access, CTools or Canvas, the authentication token you receive is good for a whole bunch of different U-M services. We need to use Kerberos together with OpenAFS because we don't own the filesystem at umich.edu, the school does.</p>
 <h2>II. Setting up Kerberos</h2>
 <body>
-I explain how to set up the Kerberos part.
+First we use the Debian package manager <code>apt-get</code> to install krb5-user, the user client for Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configurationg file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a token and then verify that we've gotten it. Altogether the commands are:
 <pre><code>
 sudo apt-get install krb5-user
 scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
