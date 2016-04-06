@@ -1,12 +1,13 @@
 <h1>A Guide to Setting up OpenAFS with Kerberos on Debian for The University of Michigan</h1>
 <h2>Introduction</h2>
-<body>
-<p>Andrew File System (AFS) is the name of a program written by Transarc Corporation which was acquired by IBM. It's a distribued filesystem product, meaning a filesystem that is distributed across many computers. IBM made a copy of the program's code available for open development and this release is called OpenAFS.</p>
-<p>U-M uses OpenAFS to store the files in your CAEN home directory. You can verify this by ssh-ing into a CAEN machine and finding the directory /afs/umich.edu/user/j/m/jminjie/ and comparing its conents to ~/. When OpenAFS is installed, the program abstracts away the actual distributing work being done and mounts the file system in /afs so that your files can be read as if they were on disk.</p>
+<h3>What is AFS</h3>
+<p>Andrew File System (AFS) is the name of a program written by Transarc Corporation which was acquired by IBM. It implements a distribued filesystem, meaning a filesystem that is distributed across many computers. IBM made a copy of the program's code available for open development and this release is called OpenAFS.</p>
+<p>U-M uses OpenAFS to store the files in your CAEN home directory. You can verify this by ssh-ing into a CAEN machine and finding the directory /afs/umich.edu/user/j/m/jminjie/ and comparing its conents to ~/. When OpenAFS is installed, the program abstracts away the actual distributing work being done and mounts the file system in /afs so that your files can be read as if they were on disk. Then login.engin.umich.edu pretends that the /afs directory belonging to your uniqname is your home directory.</p>
+<h3>Why use AFS</h3>
 <p>For most of my U-M EECS undergraduate career my workflow consisted of editing files on my computer using my preferred text editors, transferring the files to my CAEN home directory using WinSCP or git, and compiling on CAEN.</p>
 <p>With this guide you will be able to edit files as if they were on your own disk and your changes will propogate so that anyone using OpenAFS to view them will see the changes. That means the new workflow consists of just editing and then compiling on CAEN.</p>
+<h3>What is Kerberos</h3>
 <p>OpenAFS uses Kerberos for authentication. Just like when you log in to Wolverine Access, CTools or Canvas, the authentication token you receive is good for a whole bunch of different U-M services. We need to use Kerberos together with OpenAFS because we don't own the filesystem at umich.edu, the school does.</p>
-<body>
 <h2>Setting up Kerberos</h2>
 <body>
 I explain how to set up the Kerberos part.
