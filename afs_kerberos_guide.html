@@ -13,7 +13,7 @@
 <p>OpenAFS uses a protocol called Kerberos for authentication. We need to use Kerberos together with OpenAFS because we don't own the file system at <code>umich.edu</code>, the school does.</p>
 <h2>I. Setting up Kerberos</h2>
 First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Altogether the commands are:
-<pre><code>$sudo apt-get install krb5-user
+<pre><code>$ sudo apt-get install krb5-user
 $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
