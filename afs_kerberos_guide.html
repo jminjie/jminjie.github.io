@@ -6,12 +6,44 @@ This will be the introduction eventually. I should explain what Kerberos does an
 <h2>Setting up Kerberos</h2>
 <body>
 I explain how to set up the Kerberos part.
+<code>
+sudo apt-get install krb5-user
+scp jminjie@login-course.engin.umich.edu:/etc/krb5.conf temp.txt
+sudo mv temp.txt /etc/krb5.conf
+kinit jminjie@UMICH.EDU
+klist
+</code>
 </body>
 <h2>Setting up AFS</h2>
 <body>
 I explain how to set up the AFS part.
+<code>
+sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
+sudo dpkg-reconfigure krb5-config openafs-client
+</code>
+Explain the options in reconfigure
+</code>
+sudo service openafs-client restart
+scp jminjie@course.engin.umich.edu:/etc/openafs/CellServDB temp.txt
+sudo mv temp.txt /etc/openafs/CellServDB
+aklog
+tokens
+</code>
 </body>
 <h2>Putting it all together</h2>
 <body>
 I explain how to put it all together
+<code>
+$ chmod +x init_afs
+$ cat init_afs
+#!/bin/sh
+kinit jminjie@UMICH.EDU
+klist
+aklog
+tokens
+cd  /afs/umich.edu/user/j/m/jminjie
+</code>
+<code>
+$ source init_afs	
+</code>
 </body>
