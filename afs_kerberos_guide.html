@@ -1,7 +1,7 @@
 <h1>A Guide to Setting up OpenAFS with Kerberos on Debian for The University of Michigan</h1>
 <h2>Introduction</h2>
 <body>
-This will be the introduction eventually. I should explain what Kerberos does and what AFS does.
+This will be the introduction eventually. I should explain what Kerberos does and what AFS does once I understand myself.
 <body>
 <h2>Setting up Kerberos</h2>
 <body>
@@ -56,9 +56,7 @@ aklog
 tokens
 cd  /afs/umich.edu/user/j/m/jminjie
 </code></pre>
-<pre><code>
-$ source init_afs	
-</code></pre>
+I made a shell script called init_afs. You could run it using <code>./init_afs</code> but since this would open up a temporary shell and execute it, and I want the script to change my directory, I invoke it with <code>source init_afs</code> instead.
 </body>
 <h2>Resources</h2>
 <body>
