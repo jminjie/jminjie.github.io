@@ -10,7 +10,7 @@ code {
 	color: #586e75;
 }
 
-table, td {
+table {
 	display: table;
 	border-collapse: collapse;
 	text-align: left;
