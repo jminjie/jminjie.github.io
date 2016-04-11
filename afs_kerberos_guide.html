@@ -22,7 +22,13 @@ $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 # When prompted for the realm, type UMICH.EDU
 $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
-$ klist</code></pre>
+$ klist
+Ticket cache: FILE:/tmp/krb5cc_1000
+Default principal: jminjie@UMICH.EDU
+
+Valid starting       Expires              Service principal
+04/11/2016 16:17:49  04/12/2016 16:17:46  krbtgt/UMICH.EDU@UMICH.EDU
+</code></pre>
 <p>If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.EDU</code>. Specific servers and ports are listed here which tell <code>kinit</code> exactly how to get authentication ticket.</p>
 <br>
 <h2>II. Setting up AFS</h2>
