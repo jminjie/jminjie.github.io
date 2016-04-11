@@ -46,9 +46,6 @@ $ sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 	<tr><th>Look up AFS cells in DNS?</th><td>Yes</td></tr>
 	<tr><th>Encrypt authenticated traffic with AFS fileserver?</th><td>Yes</td></tr>
 	<tr><th>Dynamically generate the contents of /afs</th><td>Yes</td></tr>
-	<tr><th>Use fakestat?</th><td>Yes</td></tr>
-	<tr><th>DB server host names for your home cell:</th><td>(blank)</td></tr>
-	<tr><th>Run openafs client now and at boot?</th><td>(user preference)</td></tr>
 </table>
 <p>Once this is finished, we once again copy the configuration file from the CAEN computers using <code>scp</code>. </p>
 <pre><code>$ scp jminjie@login.engin.umich.edu:/etc/openafs/CellServDB temp.txt
