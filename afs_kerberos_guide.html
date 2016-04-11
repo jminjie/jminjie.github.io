@@ -34,6 +34,7 @@ Valid starting       Expires              Service principal
 <h2>II. Setting up AFS</h2>
 First we install the necessary packages to run OpenAFS with Kerberos. Dynamic Kernel Module Support (DKMS) is a supplementary package that helps install kernel modules. Once the packages are installed we use DKMS to configure the installation settings.
 <pre><code>$ sudo apt-get install openafs-client openafs-krb5 openafs-modules-dkms
+# See below table if prompted during installation
 $ sudo dpkg-reconfigure krb5-config openafs-client</code></pre>
 <p>Running <code>dpkg-reconfigure</code> will open a window in which you should choose these options:</p>
 <table border=1 cellpadding=5px>
