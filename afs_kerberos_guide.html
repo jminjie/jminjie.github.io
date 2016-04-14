@@ -19,8 +19,8 @@
 <p>
 First we use the Ubuntu package manager <code>apt-get</code> to install krb5-user, the user client that implements Kerberos 5. Using this program takes some configuration, but instead of doing it manually we can use <code>scp</code> to copy the the configuration file from the CAEN computers. Finally we can run <code>kinit</code> and then <code>klist</code> to get a ticket and then verify that we've gotten it. Note that I will use my uniqname, jminjie, as an example. Altogether the commands are:</p>
 <pre><code>$ sudo apt-get install krb5-user
-$ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 # When prompted for the realm, type UMICH.EDU
+$ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 $ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
 $ klist
