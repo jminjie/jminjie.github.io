@@ -23,8 +23,7 @@ First we use the Ubuntu package manager <code>apt-get</code> to install krb5-use
 $ scp jminjie@login.engin.umich.edu:/etc/krb5.conf temp.txt
 </code></pre>
 <p>If we stop and look at the contents of <code>temp.txt</code>, the copied configuration file, we see the description of a realm being defined as the default realm called <code>UMICH.EDU</code>. Specific servers and ports are listed here which tell <code>kinit</code> exactly how to get authentication ticket.</p>
-<pre><code>
-$ sudo mv temp.txt /etc/krb5.conf
+<pre><code>$ sudo mv temp.txt /etc/krb5.conf
 $ kinit jminjie@UMICH.EDU
 $ klist
 Ticket cache: FILE:/tmp/krb5cc_1000
