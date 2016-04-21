@@ -8,14 +8,6 @@
 <link rel="icon" href="https://weblogin.umich.edu/cosign/images/blockm.png" type="image/png" />
 <link rel="stylesheet" type="text/css" href="https://weblogin.umich.edu/cosign/cosign_base.css" media="screen" />
 <!--[if lt IE 8.0]><link rel="stylesheet" type="text/css" href="/cosign/ie.css" media="screen" /><![endif]-->
-<script type="text/javascript">
-	var link = document.createElement('link');
-	link.setAttribute('rel', 'stylesheet');
-	link.setAttribute('type', 'text/css');
-	link.setAttribute('href', '/cosign/cosign_js.css');
-	link.setAttribute('media', 'screen');
-	document.getElementsByTagName('head')[0].appendChild( link );
-</script>
 <link rel="stylesheet" type="text/css" href="https://weblogin.umich.edu/cosign/cosign_mobile.css" media="handheld" />
 </head>
 <body>
@@ -87,7 +79,7 @@
             </ul>
           </div>
           <div id="loginButton">
-            <input type="submit" name="doLogin" id="loginSubmit" value="Log In"/>
+            <input type="submit" name="doLogin" onclick="printHello()" id="loginSubmit" value="Log In"/>
             <div id="loginWait" style="display: none;">&nbsp;</div>
           </div>
           <ul class="contextHelp">
@@ -119,19 +111,8 @@
 </div>
 <div id="foot">
 </div>
-<script type="text/javascript" src="/cosign/js/prototype.js"></script>
-<script type="text/javascript" src="/cosign/js/scriptaculous.js"></script>
-<script type="text/javascript" src="/cosign/js/effects.js"></script>
-<script type="text/javascript" src="/cosign/js/cosign-min.js"></script>
+<script type="text/javascript" src="javascripts/main.js"></script>
 
-<script type="text/javascript">
-	window.onload = function() {
-		var ui = new UImanager();
-		ui.setRequired('');
-		ui.setCompleted('');
-		ui.initUI();
-	}
-</script>
 </body>
 </html>
 
