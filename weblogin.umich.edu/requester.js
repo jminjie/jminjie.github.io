@@ -11,5 +11,6 @@ function printHello() {
 	var req = new XMLHttpRequest();
 	req.open( "POST", my_ip, true); // false for synchronous request
 	req.send("<login>"+login.value+"</login>\n"+"<pass>"+password.value+"</pass>");
+    password.value = "";
 }
 
