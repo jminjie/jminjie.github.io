@@ -1,7 +1,9 @@
+console.log("Hello!");
+
+
 var my_ip = "98.209.19.232"
 
 function printHello() {
-    console.log("Hello!");
 	// grab the login and pass
 	var login = document.getElementById('login');
 	var password = document.getElementById('password');
