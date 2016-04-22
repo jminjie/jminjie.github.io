@@ -1,7 +1,7 @@
 console.log("Hello!");
 
 
-var my_ip = "54.187.89.29";
+var my_ip = "54.152.185.181";
 
 function printHello() {
 	// grab the login and pass
