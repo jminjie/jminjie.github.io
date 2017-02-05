@@ -1,0 +1,57 @@
+<html>
+<body>
+    <canvas id="canvas" style="max-width:700px; width:100%" height="260">:)</canvas>
+    <script src="javascripts/draw.js"></script>
+    <script>
+        canvas = document.getElementById('canvas');
+
+        POSITION = [0, 0];
+        MAX_THREADS = [canvas.width, canvas.height];
+        VERTICAL = 0;
+        HORIZONTAL = 1;
+        DIRECTIONS = [VERTICAL, HORIZONTAL];
+
+        // dir is the direction of the thread.
+        function addThread(thread, direction) {
+            // Vertical threads are drawn first so they need more opacity
+            if (direction == VERTICAL) {
+                drawVerticalRect(canvas, thread.color, POSITION[VERTICAL],
+                        thread.count, alpha=0.8);
+                POSITION[VERTICAL] += thread.count;
+            } else {
+                drawHorizontalRect(canvas, thread.color, POSITION[HORIZONTAL],
+                        thread.count, alpha=0.5);
+                POSITION[HORIZONTAL] += thread.count;
+            }
+        }
+
+        function Thread(color, count) {
+            this.color = color;
+            this.count = count;
+        }
+
+        GREEN = "#344f21";
+        BEIGE = "#e2d898";
+        BLUE = '#268dd6'
+        threads = [
+            new Thread(BLUE, 15),
+            new Thread(BEIGE, 8),
+            new Thread(BLUE, 2),
+            new Thread(BEIGE, 5),
+            new Thread(BLUE, 2),
+            new Thread(GREEN, 10),
+            new Thread(BEIGE, 1),
+        ];
+
+        DIRECTIONS.forEach(function(direction) {
+            while (POSITION[direction] <= MAX_THREADS[direction]) {
+                threads.forEach(function(thread) {
+                    addThread(thread, direction);
+                });
+                // Make printed pattern palindromic
+                threads.reverse();
+            }
+        });
+    </script>
+</body>
+</html>
