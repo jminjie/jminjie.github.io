@@ -1,6 +1,15 @@
 <html>
-<body>
-    <canvas id="canvas" style="max-width:700px; width:100%" height="260">:)</canvas>
+    <body>
+    <button type="button" onClick="addThread()"><b>+</b></button>
+    <button type="button" onClick="removeThread()"><b>-</b></button>
+    <input type="number" id="count" min="1" max="50" value="3" step="2" />
+    <input type="color" id="color" value="#a01e25" style="height:18px;" />
+    <button type="button" onClick="togglePlaid()">Toggle plaid</button>
+    <button type="button" onClick="clearThreads()">Clear</button>
+    <br>
+    <button type="button" onClick="thread=setExample1()">Example 1</button>
+    <button type="button" onClick="thread=setExample2()">Example 2</button>
+    <canvas id="canvas" style="max-width:700px; width:100%" height="250">:)</canvas>
     <script src="javascripts/draw.js"></script>
     <script>
         canvas = document.getElementById('canvas');
@@ -11,8 +20,97 @@
         HORIZONTAL = 1;
         DIRECTIONS = [VERTICAL, HORIZONTAL];
 
+        GREEN = "#344f21";
+        BLUE = '#268dd6'
+        BEIGE = "#e2d898";
+        RED = '#9b091a';
+        BLACK = 'black';
+
+        threads = [];
+        setExample1();
+
+        function setExample1() {
+            var example_threads_1 = [
+                new Thread(BLUE, 15),
+                new Thread(BEIGE, 8),
+                new Thread(BLUE, 2),
+                new Thread(BEIGE, 5),
+                new Thread(BLUE, 2),
+                new Thread(GREEN, 10),
+                new Thread(BEIGE, 1),
+            ];
+            threads = example_threads_1.slice();
+            drawPlaid();
+        }
+
+        function setExample2() {
+            var example_threads_2 = [
+                new Thread(RED, 10),
+                new Thread(BEIGE, 2),
+                new Thread(BLACK, 5),
+                new Thread(RED, 6),
+                new Thread(BEIGE, 2),
+            ];
+            threads = example_threads_2.slice();
+            drawPlaid();
+        }
+
+        function clearThreads() {
+            threads = [];
+            clearCanvas(canvas);
+            plaid = false;
+        }
+
+        function addThread() {
+            var color = document.getElementById("color").value;
+            var count = parseInt(document.getElementById("count").value);
+            threads.push(new Thread(color, count));
+            drawThreads();
+        }
+
+        function removeThread() {
+            threads.pop();
+            drawThreads();
+        }
+
+        function togglePlaid() {
+            if (plaid) drawThreads();
+            else drawPlaid();
+        }
+
+        function drawPlaid() {
+            clearCanvas(canvas);
+            plaid = true;
+            if (threads.length == 0)
+                return;
+            POSITION[VERTICAL] = 0;
+            POSITION[HORIZONTAL]  = 0;
+            var reversible_threads = threads.slice();
+            DIRECTIONS.forEach(function(direction) {
+                while (POSITION[direction] <= MAX_THREADS[direction]) {
+                    reversible_threads.forEach(function(thread) {
+                        weaveThread(thread, direction);
+                    });
+                    // Make printed pattern palindromic
+                    reversible_threads.reverse();
+               }
+            });
+        }
+
+        function drawThreads() {
+            clearCanvas(canvas);
+            plaid = false;
+            POSITION[VERTICAL] = 0;
+            POSITION[HORIZONTAL]  = 0;
+            DIRECTIONS.forEach(function(direction) {
+                threads.forEach(function(thread) {
+                    weaveThread(thread, direction);
+                });
+            });
+        }
+
         // dir is the direction of the thread.
-        function addThread(thread, direction) {
+        function weaveThread(thread, direction) {
             // Vertical threads are drawn first so they need more opacity
             if (direction == VERTICAL) {
                 drawVerticalRect(canvas, thread.color, POSITION[VERTICAL],
@@ -29,29 +127,6 @@
             this.color = color;
             this.count = count;
         }
-
-        GREEN = "#344f21";
-        BEIGE = "#e2d898";
-        BLUE = '#268dd6'
-        threads = [
-            new Thread(BLUE, 15),
-            new Thread(BEIGE, 8),
-            new Thread(BLUE, 2),
-            new Thread(BEIGE, 5),
-            new Thread(BLUE, 2),
-            new Thread(GREEN, 10),
-            new Thread(BEIGE, 1),
-        ];
-
-        DIRECTIONS.forEach(function(direction) {
-            while (POSITION[direction] <= MAX_THREADS[direction]) {
-                threads.forEach(function(thread) {
-                    addThread(thread, direction);
-                });
-                // Make printed pattern palindromic
-                threads.reverse();
-            }
-        });
     </script>
 </body>
 </html>
