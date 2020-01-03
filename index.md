@@ -7,7 +7,7 @@ I write dialog that doesn't go anywhere.
 - [Unpolished blog posts](https://blog.jminjie.com)
 - [Baked! The Musical](https://bakedthemusical.com) - an original musical by myself and [Deepak](https://kumarde.com)
 - [Thumbpoems](https://thumbpoems.com) - a collection of poems written on phones
-- Amusement - a new 10 minute play written in lowercase
+- [Amusement](amusement.pdf) - a new 10 minute play written in lowercase
 
 ## Programming
 - [My Github projects](https://github.com/jminjie)
