@@ -13,4 +13,5 @@ include:
   - ISSUE_TEMPLATE.md
   - PULL_REQUEST_TEMPLATE.md
 theme: jekyll-theme-cayman
-header_text: (beat)
+title: (beat)
+description: a personal site

@@ -1,4 +1,4 @@
-# jordan liu
+# Jordan Liu
 
 I write dialog that doesn't go anywhere.
 
