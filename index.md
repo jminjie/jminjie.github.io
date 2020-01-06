@@ -19,3 +19,8 @@ I write dialog that doesn't go anywhere.
 - [Me on Spotify](https://open.spotify.com/artist/1S7agO3IkPPB5tE8VbB3Aw)
 - [My Youtube](https://www.youtube.com/user/jordanminjie)
 - [My Instagram](https://www.instagram.com/jordan_takes_pictures_of_a_cat)
+
+## Curriculum Vitae
+- 2012-2016: B.S in Computer Science at the University of Michigan
+- 2016-present: Software Engineer at Google
+- 2018-present: Co-writer and co-producer of Baked! The Musical
