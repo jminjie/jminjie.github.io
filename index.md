@@ -10,6 +10,7 @@ I write dialog that doesn't go anywhere.
 - [Amusement](amusement.pdf) - a new 10 minute play written in lowercase
 
 ## Programming
+- [My resume](resume_2019-09-23.pdf)
 - [My Github projects](https://github.com/jminjie)
 - [Android Open Source Project](https://android-review.googlesource.com/q/owner:jminjie%2540google.com)
 - [My bookshelf](https://blog.jminjie.com/bookshelf)
