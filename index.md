@@ -24,4 +24,4 @@ I write dialog that doesn't go anywhere.
 ## Curriculum Vitae
 - 2012-2016: B.S in Computer Science at the University of Michigan
 - 2016-present: Software Engineer at Google
-- 2018-present: Co-writer and co-producer of Baked! The Musical
+- 2017-present: Co-writer and co-producer of Baked! The Musical
